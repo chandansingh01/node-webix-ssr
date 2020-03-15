@@ -13,7 +13,7 @@ app.use('/', express.static('public'))
 
 User(app);
 
-app.listen(config.port,()=>{
+app.listen(process.env.PORT||config.port,()=>{
 console.log(`APP is running on PORT:: ${config.port}`);
 
 })
