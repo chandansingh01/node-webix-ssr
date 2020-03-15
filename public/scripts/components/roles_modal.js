@@ -4,15 +4,17 @@ let role ={
 }
 
 const window_view = {
-      height: 500,
+     
       rows: [
-             {
+             {   
+                  
                   cols: [
                         {
                               id: 'roles_table',
                               view: "datatable",
                               height:500,                              
-                              select: "row",
+                              select: "row",  
+                                                         
                               on: {
                                     onSelectChange: function () {
                                           var item = $$("roles_table").getSelectedItem();
@@ -34,7 +36,7 @@ const window_view = {
                         },
                         {
                               view: "form",
-                              id: "roles_form",
+                              id: "roles_form",                                                                                       
                               elements: [
                                     { view: "text", id: 'form_role_id',hidden:true,label: "id", name: "id", value: ''},
                                     { view: "text", id: 'form_role_name', value:'',name: "name",placeholder:"Enter Role"},                                    
@@ -62,7 +64,8 @@ const window_view = {
 
 export const modal = webix.ui({
       view:"window",
-      width:600, height:400,            
+      maxWidth:500, height:400,  
+      responsive:true,          
       position:"top",            
       head:'Roles',
       close:true,

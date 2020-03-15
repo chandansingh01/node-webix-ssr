@@ -2,6 +2,15 @@ let users = [
  {id:1,name:'Chandan singh',email:'chandan_92@outlook.com',role:'Admin'}
 ]
 
+function ValidateEmail(mail) 
+{
+ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+  {
+    return true
+  }
+   
+    return false
+}
 
 exports.read = (req, res) => {
       try {
@@ -16,6 +25,9 @@ exports.create = (req, res) => {
             if (req.body.email.trim() === '' || req.body.name.trim() === '') {
                   res.status(500).send('Please fill the required fields!!')
             }
+            else if (!ValidateEmail(req.body.email)) {
+                  res.status(500).send('Please enter correct email address!!')
+            }
             let user = users.find((item) => item.email === req.body.email);
             if (user) {
                   res.status(500).send('User Email already exist !!')
@@ -26,6 +38,7 @@ exports.create = (req, res) => {
                   res.json({ success: true, message: 'User created successfully!!' })
             }
       } catch (error) {
+            console.log(error);            
             res.status(500).send('API failure')
       }
 }
